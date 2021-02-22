@@ -35,8 +35,9 @@ def search(request):
                 if search_entry.lower() in entry.lower():
                     #return to result page
                     match.append(entry)
-            return render(request, "encyclopedia/result.html", {
-                "results": match
-            })
-            
 
+            return render(request, "encyclopedia/result.html")
+
+
+def new_page(request):
+    return render(request, "encyclopedia/new_page.html")
