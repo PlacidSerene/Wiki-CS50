@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block body %}
-    <h4>Your requested page was not found</h4>
-
+    {% if search %}
+        <h4>Couldn't find what you are looking for!</h4>
+    {% else %}
+        <h4>Your entry already existed!</h4>
+    {% endif %}
 {% endblock %}
