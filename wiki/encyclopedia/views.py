@@ -6,7 +6,7 @@ import markdown2
 from markdown2 import Markdown
 from . import util
 
-class NewPage(forms.Form):
+class PageForm(forms.Form):
     title = forms.CharField(widget=forms.TextInput(attrs={"class": "form-control"}))
     content = forms.CharField(widget=forms.Textarea(attrs={"class": "form-control", "rows":"3", "columns":"6"}))
 
@@ -56,7 +56,7 @@ def search(request):
 
 def new_page(request):
     if request.method == "POST":
-        form = NewPage(request.POST)
+        form = PageForm(request.POST)
         if form.is_valid():
             title = form.cleaned_data["title"]
             if title not in util.list_entries():
@@ -69,5 +69,12 @@ def new_page(request):
                     "search": False,
                 })
     return render(request, "encyclopedia/new_page.html",{
-        "form": NewPage()
+        "form": PageForm()
     })
+
+def edit_page(request, title):
+    # if request.method == "POST":
+    #     form = PageForm(request.POST)
+    #     if form.is_valid():
+    return render(request, "encyclopedia/edit_page.html")
+            
