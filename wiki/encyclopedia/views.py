@@ -4,6 +4,7 @@ from django.urls import reverse
 from django import forms
 import markdown2
 from markdown2 import Markdown
+import random
 from . import util
 
 class PageForm(forms.Form):
@@ -88,3 +89,7 @@ def edit_page(request, title):
             "title": title
         })
             
+def random_page(request):
+    all_entries = util.list_entries()
+    random_choice = random.choice(all_entries)
+    return HttpResponseRedirect(reverse("encyclopedia:title", kwargs={'title': random_choice}))
